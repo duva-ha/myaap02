@@ -3,172 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Sơ Đồ Tư Duy Công Nghệ - GV Gia Thoại</title>
+    <title>Hệ Thống Bài Giảng Công Nghệ - GV Gia Thoại</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .menu-item:hover { background-color: #e2e8f0; transition: 0.2s; }
-        #mindmap-container { min-height: 500px; display: flex; justify-content: center; align-items: flex-start; background: white; border-radius: 12px; padding: 20px; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
+        .slide-active { display: flex !important; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .content-area { background: white; border-radius: 16px; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
     </style>
 </head>
-<body>
+<body class="flex h-screen overflow-hidden">
 
-    <div class="flex h-screen">
-        <!-- SIDEBAR: Danh mục bài học -->
-        <aside class="w-80 bg-slate-900 text-white flex flex-col overflow-y-auto">
-            <div class="p-6 border-b border-slate-700">
-                <h1 class="text-xl font-bold text-blue-400 text-center uppercase tracking-wider">Công Nghệ K10-11-12</h1>
-                <p class="text-xs text-slate-400 text-center mt-2">Công cụ hỗ trợ dạy và học</p>
+    <aside class="w-72 bg-slate-900 text-white flex flex-col shadow-2xl">
+        <div class="p-6 border-b border-slate-700">
+            <h1 class="text-xl font-bold text-blue-400 uppercase tracking-tight">E-Teaching</h1>
+            <p class="text-[10px] text-slate-400 uppercase mt-1">Giảng dạy & Ôn tập trực tuyến</p>
+        </div>
+
+        <nav class="flex-1 p-4 overflow-y-auto space-y-6">
+            <div>
+                <p class="text-xs font-bold text-slate-500 uppercase mb-3 ml-2">Khối 10</p>
+                <ul class="space-y-1">
+                    <li onclick="loadLesson('k10b1')" class="p-2 text-sm hover:bg-slate-800 rounded cursor-pointer transition">Bài 1: KH, KT & Công nghệ</li>
+                    <li onclick="loadLesson('k10b2')" class="p-2 text-sm hover:bg-slate-800 rounded cursor-pointer transition text-slate-400">Bài 2: Hệ thống kỹ thuật...</li>
+                </ul>
             </div>
-
-            <nav class="flex-1 p-4 space-y-4">
-                <!-- KHỐI 10 -->
-                <div>
-                    <button class="w-full flex justify-between items-center font-semibold text-blue-300 mb-2 uppercase text-sm tracking-wide">Khối 10 (Công nghiệp)</button>
-                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
-                        <li onclick="loadMap('k10b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: KH, KT & Công nghệ</li>
-                        <li onclick="loadMap('k10b2')" class="p-2 cursor-pointer menu-item rounded">Bài 2: Hệ thống kỹ thuật</li>
-                    </ul>
-                </div>
-
-                <!-- KHỐI 11 -->
-                <div>
-                    <button class="w-full flex justify-between items-center font-semibold text-green-300 mb-2 uppercase text-sm tracking-wide">Khối 11 (Cơ khí)</button>
-                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
-                        <li onclick="loadMap('k11b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: Cơ khí chế tạo</li>
-                        <li onclick="loadMap('k11b3')" class="p-2 cursor-pointer menu-item rounded">Bài 3: Vật liệu cơ khí</li>
-                    </ul>
-                </div>
-
-                <!-- KHỐI 12 -->
-                <div>
-                    <button class="w-full flex justify-between items-center font-semibold text-purple-300 mb-2 uppercase text-sm tracking-wide">Khối 12 (Điện - Điện tử)</button>
-                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
-                        <li onclick="loadMap('k12b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: Linh kiện điện tử</li>
-                    </ul>
-                </div>
-            </nav>
-            
-            <div class="p-4 text-[10px] text-slate-500 text-center italic">Thiết kế bởi Gia Thoại</div>
-        </aside>
-
-        <!-- MAIN AREA: Hiển thị sơ đồ -->
-        <main class="flex-1 flex flex-col p-8 overflow-hidden">
-            <div class="flex justify-between items-center mb-6">
-                <h2 id="lesson-title" class="text-2xl font-bold text-slate-800">Chọn bài học để bắt đầu ôn tập</h2>
-                <div class="flex space-x-2">
-                    <button onclick="window.print()" class="px-4 py-2 bg-white border border-slate-300 rounded shadow-sm text-sm hover:bg-slate-50">In tài liệu</button>
-                    <button id="edit-btn" class="px-4 py-2 bg-blue-600 text-white rounded shadow-sm text-sm hover:bg-blue-700">Chỉnh sửa nhanh</button>
-                </div>
+            <div>
+                <p class="text-xs font-bold text-slate-500 uppercase mb-3 ml-2">Khối 11</p>
+                <ul class="space-y-1">
+                    <li onclick="loadLesson('k11b1')" class="p-2 text-sm hover:bg-slate-800 rounded cursor-pointer transition text-slate-400">Bài 1: Cơ khí chế tạo...</li>
+                </ul>
             </div>
+        </nav>
+        <div class="p-4 text-[10px] text-slate-600 text-center border-t border-slate-800">GV. Gia Thoại © 2026</div>
+    </aside>
 
-            <div id="mindmap-container">
-                <div id="mermaid-graph" class="mermaid">
-                    mindmap
-                      root((Hệ thống kiến thức))
-                        Chọn khối lớp
-                        Chọn bài học
-                        Sơ đồ hiển thị tại đây
-                </div>
+    <main class="flex-1 flex flex-col p-6 overflow-hidden">
+        <div class="flex justify-between items-center mb-4">
+            <h2 id="current-lesson-title" class="text-xl font-semibold text-slate-700 italic">Chọn bài học từ menu bên trái</h2>
+            <div class="flex gap-2">
+                <button onclick="prevSlide()" class="p-2 bg-white border rounded-lg hover:bg-slate-50"><i class="fas fa-chevron-left"></i></button>
+                <span id="slide-number" class="flex items-center px-4 bg-white border rounded-lg text-sm font-medium">0 / 0</span>
+                <button onclick="nextSlide()" class="p-2 bg-white border rounded-lg hover:bg-slate-50"><i class="fas fa-chevron-right"></i></button>
+                <button onclick="toggleFullScreen()" class="ml-4 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"><i class="fas fa-expand"></i></button>
             </div>
+        </div>
 
-            <!-- Khu vực chỉnh sửa (Ẩn mặc định) -->
-            <div id="editor-section" class="hidden mt-4">
-                <textarea id="map-input" class="w-full h-32 p-4 border rounded font-monospace text-sm" placeholder="Nhập mã Mermaid tại đây..."></textarea>
-                <button onclick="updateMap()" class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Cập nhật ngay</button>
+        <div id="presentation-zone" class="content-area flex-1 flex flex-col relative overflow-hidden">
+            <div class="flex flex-col items-center justify-center h-full text-slate-300">
+                <i class="fas fa-chalkboard-teacher text-6xl mb-4"></i>
+                <p>Sẵn sàng cho bài giảng hôm nay!</p>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
     <script>
-        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
-
-        // Dữ liệu bài giảng mẫu
+        // DỮ LIỆU BÀI GIẢNG (Bạn thêm slide vào đây)
         const lessonData = {
             'k10b1': {
                 title: "Bài 1: Khoa học, Kỹ thuật và Công nghệ",
-                code: `mindmap
-                  root((Bài 1: KH-KT-CN))
-                    Khoa học
-                      Mục đích: Khám phá quy luật tự nhiên
-                      Sản phẩm: Tri thức khoa học
-                    Kỹ thuật
-                      Mục đích: Ứng dụng tri thức vào đời sống
-                      Sản phẩm: Bản thiết kế, quy trình
-                    Công nghệ
-                      Mục đích: Giải quyết vấn đề thực tế
-                      Sản phẩm: Thiết bị, máy móc, dịch vụ`
-            },
-            'k10b2': {
-                title: "Bài 2: Hệ thống kỹ thuật",
-                code: `mindmap
-                  root((Hệ thống kỹ thuật))
-                    Đầu vào (Input)
-                      Thông tin
-                      Năng lượng
-                      Vật liệu
-                    Bộ phận xử lý
-                      Biến đổi Input theo yêu cầu
-                    Đầu ra (Output)
-                      Sản phẩm mong muốn
-                      Phế thải/Nhiệt năng`
-            },
-            'k11b1': {
-                title: "Bài 1: Cơ khí chế tạo",
-                code: `mindmap
-                  root((Cơ khí chế tạo))
-                    Vai trò
-                      Sản xuất máy móc
-                      Giải phóng sức lao động
-                    Đặc điểm
-                      Dùng bản vẽ kỹ thuật
-                      Quy trình gia công chính xác
-                    Sản phẩm
-                      Động cơ
-                      Dây chuyền sản xuất`
-            },
-            'k12b1': {
-                title: "Bài 1: Linh kiện điện tử",
-                code: `mindmap
-                  root((Linh kiện điện tử))
-                    Linh kiện thụ động
-                      Điện trở: Cản trở dòng điện
-                      Tụ điện: Tích trữ điện năng
-                      Cuộn cảm: Chặn dòng AC
-                    Linh kiện chủ động
-                      Diode: Cho dòng đi 1 chiều
-                      Transistor: Khuếch đại/Đóng ngắt`
+                slides: [
+                    { h: "Chào mừng các em!", p: "Hôm nay chúng ta sẽ tìm hiểu về mối quan hệ giữa KH - KT - CN.", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop" },
+                    { h: "1. Khoa học là gì?", p: "Là hệ thống tri thức về bản chất, quy luật tồn tại và phát triển của sự vật, hiện tượng tự nhiên, xã hội." },
+                    { h: "2. Kỹ thuật là gì?", p: "Là việc ứng dụng các nguyên lý khoa học để thiết kế, chế tạo các giải pháp kỹ thuật phục vụ đời sống." },
+                    { h: "3. Công nghệ là gì?", p: "Sử dụng các giải pháp kỹ thuật để thay đổi thế giới xung quanh, tạo ra các sản phẩm thực tế." },
+                    { h: "Tổng kết", p: "KH (Biết gì) -> KT (Làm thế nào) -> CN (Làm bằng gì)." }
+                ]
             }
+            // Thêm các bài khác tương tự...
         };
 
-        const container = document.getElementById('mermaid-graph');
-        const titleLabel = document.getElementById('lesson-title');
-        const mapInput = document.getElementById('map-input');
-        const editorSection = document.getElementById('editor-section');
+        let currentSlides = [];
+        let currentIndex = 0;
 
-        async function loadMap(key) {
+        function loadLesson(key) {
             const data = lessonData[key];
-            if (data) {
-                titleLabel.innerText = data.title;
-                mapInput.value = data.code;
-                renderMermaid(data.code);
+            if (!data) return;
+
+            document.getElementById('current-lesson-title').innerText = data.title;
+            currentSlides = data.slides;
+            currentIndex = 0;
+            renderSlides();
+        }
+
+        function renderSlides() {
+            const zone = document.getElementById('presentation-zone');
+            zone.innerHTML = ''; // Clear cũ
+
+            currentSlides.forEach((slide, index) => {
+                const div = document.createElement('div');
+                div.className = `absolute inset-0 hidden flex-col items-center justify-center p-12 text-center ${index === currentIndex ? 'slide-active' : ''}`;
+                
+                let content = `<h2 class="text-4xl font-bold text-blue-600 mb-6">${slide.h}</h2>`;
+                if(slide.img) content += `<img src="${slide.img}" class="w-1/2 rounded-xl mb-6 shadow-lg">`;
+                content += `<p class="text-2xl text-slate-600 leading-relaxed max-w-3xl">${slide.p}</p>`;
+                
+                div.innerHTML = content;
+                zone.appendChild(div);
+            });
+
+            updateCounter();
+        }
+
+        function nextSlide() {
+            if (currentIndex < currentSlides.length - 1) {
+                currentIndex++;
+                renderSlides();
             }
         }
 
-        async function renderMermaid(code) {
-            container.removeAttribute('data-processed');
-            container.innerHTML = code;
-            await mermaid.run({ nodes: [container] });
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderSlides();
+            }
         }
 
-        function updateMap() {
-            renderMermaid(mapInput.value);
+        function updateCounter() {
+            document.getElementById('slide-number').innerText = `${currentIndex + 1} / ${currentSlides.length}`;
         }
 
-        document.getElementById('edit-btn').addEventListener('click', () => {
-            editorSection.classList.toggle('hidden');
+        function toggleFullScreen() {
+            const elem = document.getElementById('presentation-zone');
+            if (elem.requestFullscreen) elem.requestFullscreen();
+        }
+
+        // Hỗ trợ phím mũi tên
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") nextSlide();
+            if (e.key === "ArrowLeft") prevSlide();
         });
     </script>
 </body>
