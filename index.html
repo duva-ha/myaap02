@@ -3,70 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Công cụ Sơ đồ Tư duy cho Giáo viên</title>
-    <!-- Nhúng thư viện Mermaid -->
+    <title>Hệ Thống Sơ Đồ Tư Duy Công Nghệ - GV Gia Thoại</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <style>
-        body { font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; margin: 0; }
-        .container { display: flex; flex: 1; overflow: hidden; }
-        .editor { width: 30%; padding: 20px; background: #f4f4f4; border-right: 1px solid #ccc; display: flex; flex-direction: column; }
-        .viewer { width: 70%; padding: 20px; overflow: auto; display: flex; justify-content: center; align-items: flex-start; background: white; }
-        textarea { flex: 1; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        h3 { margin-top: 0; color: #333; }
-        .hint { font-size: 0.85em; color: #666; margin-bottom: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .menu-item:hover { background-color: #e2e8f0; transition: 0.2s; }
+        #mindmap-container { min-height: 500px; display: flex; justify-content: center; align-items: flex-start; background: white; border-radius: 12px; padding: 20px; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Khu vực nhập liệu -->
-    <div class="editor">
-        <h3>Soạn thảo Mindmap</h3>
-        <p class="hint">Cú pháp: Nhánh con lùi vào so với nhánh cha.</p>
-        <textarea id="input-text" placeholder="Nhập cấu trúc sơ đồ...">
-mindmap
-  root((Chủ đề chính))
-    Nhánh 1
-      Ý phụ 1.1
-      Ý phụ 1.2
-    Nhánh 2
-      Ý phụ 2.1
-    Nhánh 3
-        </textarea>
-        <button id="render-btn" style="margin-top: 10px; padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px;">Cập nhật Sơ đồ</button>
+    <div class="flex h-screen">
+        <!-- SIDEBAR: Danh mục bài học -->
+        <aside class="w-80 bg-slate-900 text-white flex flex-col overflow-y-auto">
+            <div class="p-6 border-b border-slate-700">
+                <h1 class="text-xl font-bold text-blue-400 text-center uppercase tracking-wider">Công Nghệ K10-11-12</h1>
+                <p class="text-xs text-slate-400 text-center mt-2">Công cụ hỗ trợ dạy và học</p>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-4">
+                <!-- KHỐI 10 -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-blue-300 mb-2 uppercase text-sm tracking-wide">Khối 10 (Công nghiệp)</button>
+                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
+                        <li onclick="loadMap('k10b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: KH, KT & Công nghệ</li>
+                        <li onclick="loadMap('k10b2')" class="p-2 cursor-pointer menu-item rounded">Bài 2: Hệ thống kỹ thuật</li>
+                    </ul>
+                </div>
+
+                <!-- KHỐI 11 -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-green-300 mb-2 uppercase text-sm tracking-wide">Khối 11 (Cơ khí)</button>
+                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
+                        <li onclick="loadMap('k11b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: Cơ khí chế tạo</li>
+                        <li onclick="loadMap('k11b3')" class="p-2 cursor-pointer menu-item rounded">Bài 3: Vật liệu cơ khí</li>
+                    </ul>
+                </div>
+
+                <!-- KHỐI 12 -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-purple-300 mb-2 uppercase text-sm tracking-wide">Khối 12 (Điện - Điện tử)</button>
+                    <ul class="text-sm space-y-1 pl-2 border-l border-slate-700">
+                        <li onclick="loadMap('k12b1')" class="p-2 cursor-pointer menu-item rounded">Bài 1: Linh kiện điện tử</li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="p-4 text-[10px] text-slate-500 text-center italic">Thiết kế bởi Gia Thoại</div>
+        </aside>
+
+        <!-- MAIN AREA: Hiển thị sơ đồ -->
+        <main class="flex-1 flex flex-col p-8 overflow-hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="lesson-title" class="text-2xl font-bold text-slate-800">Chọn bài học để bắt đầu ôn tập</h2>
+                <div class="flex space-x-2">
+                    <button onclick="window.print()" class="px-4 py-2 bg-white border border-slate-300 rounded shadow-sm text-sm hover:bg-slate-50">In tài liệu</button>
+                    <button id="edit-btn" class="px-4 py-2 bg-blue-600 text-white rounded shadow-sm text-sm hover:bg-blue-700">Chỉnh sửa nhanh</button>
+                </div>
+            </div>
+
+            <div id="mindmap-container">
+                <div id="mermaid-graph" class="mermaid">
+                    mindmap
+                      root((Hệ thống kiến thức))
+                        Chọn khối lớp
+                        Chọn bài học
+                        Sơ đồ hiển thị tại đây
+                </div>
+            </div>
+
+            <!-- Khu vực chỉnh sửa (Ẩn mặc định) -->
+            <div id="editor-section" class="hidden mt-4">
+                <textarea id="map-input" class="w-full h-32 p-4 border rounded font-monospace text-sm" placeholder="Nhập mã Mermaid tại đây..."></textarea>
+                <button onclick="updateMap()" class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Cập nhật ngay</button>
+            </div>
+        </main>
     </div>
 
-    <!-- Khu vực hiển thị -->
-    <div class="viewer">
-        <div id="graph-container" class="mermaid">
-            <!-- Sơ đồ sẽ hiển thị ở đây -->
-        </div>
-    </div>
-</div>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
 
-<script>
-    // Khởi tạo Mermaid
-    mermaid.initialize({ startOnLoad: true, theme: 'forest' });
+        // Dữ liệu bài giảng mẫu
+        const lessonData = {
+            'k10b1': {
+                title: "Bài 1: Khoa học, Kỹ thuật và Công nghệ",
+                code: `mindmap
+                  root((Bài 1: KH-KT-CN))
+                    Khoa học
+                      Mục đích: Khám phá quy luật tự nhiên
+                      Sản phẩm: Tri thức khoa học
+                    Kỹ thuật
+                      Mục đích: Ứng dụng tri thức vào đời sống
+                      Sản phẩm: Bản thiết kế, quy trình
+                    Công nghệ
+                      Mục đích: Giải quyết vấn đề thực tế
+                      Sản phẩm: Thiết bị, máy móc, dịch vụ`
+            },
+            'k10b2': {
+                title: "Bài 2: Hệ thống kỹ thuật",
+                code: `mindmap
+                  root((Hệ thống kỹ thuật))
+                    Đầu vào (Input)
+                      Thông tin
+                      Năng lượng
+                      Vật liệu
+                    Bộ phận xử lý
+                      Biến đổi Input theo yêu cầu
+                    Đầu ra (Output)
+                      Sản phẩm mong muốn
+                      Phế thải/Nhiệt năng`
+            },
+            'k11b1': {
+                title: "Bài 1: Cơ khí chế tạo",
+                code: `mindmap
+                  root((Cơ khí chế tạo))
+                    Vai trò
+                      Sản xuất máy móc
+                      Giải phóng sức lao động
+                    Đặc điểm
+                      Dùng bản vẽ kỹ thuật
+                      Quy trình gia công chính xác
+                    Sản phẩm
+                      Động cơ
+                      Dây chuyền sản xuất`
+            },
+            'k12b1': {
+                title: "Bài 1: Linh kiện điện tử",
+                code: `mindmap
+                  root((Linh kiện điện tử))
+                    Linh kiện thụ động
+                      Điện trở: Cản trở dòng điện
+                      Tụ điện: Tích trữ điện năng
+                      Cuộn cảm: Chặn dòng AC
+                    Linh kiện chủ động
+                      Diode: Cho dòng đi 1 chiều
+                      Transistor: Khuếch đại/Đóng ngắt`
+            }
+        };
 
-    const input = document.getElementById('input-text');
-    const button = document.getElementById('render-btn');
-    const container = document.getElementById('graph-container');
+        const container = document.getElementById('mermaid-graph');
+        const titleLabel = document.getElementById('lesson-title');
+        const mapInput = document.getElementById('map-input');
+        const editorSection = document.getElementById('editor-section');
 
-    button.addEventListener('click', async () => {
-        const code = input.value.trim();
-        
-        // Xóa nội dung cũ và vẽ lại
-        container.removeAttribute('data-processed');
-        container.innerHTML = code;
-        
-        try {
-            await mermaid.run({ nodes: [container] });
-        } catch (err) {
-            console.error("Lỗi cú pháp:", err);
-            alert("Cú pháp không hợp lệ. Vui lòng kiểm tra lại!");
+        async function loadMap(key) {
+            const data = lessonData[key];
+            if (data) {
+                titleLabel.innerText = data.title;
+                mapInput.value = data.code;
+                renderMermaid(data.code);
+            }
         }
-    });
-</script>
 
+        async function renderMermaid(code) {
+            container.removeAttribute('data-processed');
+            container.innerHTML = code;
+            await mermaid.run({ nodes: [container] });
+        }
+
+        function updateMap() {
+            renderMermaid(mapInput.value);
+        }
+
+        document.getElementById('edit-btn').addEventListener('click', () => {
+            editorSection.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
