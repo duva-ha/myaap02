@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công cụ Sơ đồ Tư duy cho Giáo viên</title>
+    <!-- Nhúng thư viện Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; height: 100vh; margin: 0; }
+        .container { display: flex; flex: 1; overflow: hidden; }
+        .editor { width: 30%; padding: 20px; background: #f4f4f4; border-right: 1px solid #ccc; display: flex; flex-direction: column; }
+        .viewer { width: 70%; padding: 20px; overflow: auto; display: flex; justify-content: center; align-items: flex-start; background: white; }
+        textarea { flex: 1; font-family: monospace; font-size: 14px; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        h3 { margin-top: 0; color: #333; }
+        .hint { font-size: 0.85em; color: #666; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Khu vực nhập liệu -->
+    <div class="editor">
+        <h3>Soạn thảo Mindmap</h3>
+        <p class="hint">Cú pháp: Nhánh con lùi vào so với nhánh cha.</p>
+        <textarea id="input-text" placeholder="Nhập cấu trúc sơ đồ...">
+mindmap
+  root((Chủ đề chính))
+    Nhánh 1
+      Ý phụ 1.1
+      Ý phụ 1.2
+    Nhánh 2
+      Ý phụ 2.1
+    Nhánh 3
+        </textarea>
+        <button id="render-btn" style="margin-top: 10px; padding: 10px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 4px;">Cập nhật Sơ đồ</button>
+    </div>
+
+    <!-- Khu vực hiển thị -->
+    <div class="viewer">
+        <div id="graph-container" class="mermaid">
+            <!-- Sơ đồ sẽ hiển thị ở đây -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Khởi tạo Mermaid
+    mermaid.initialize({ startOnLoad: true, theme: 'forest' });
+
+    const input = document.getElementById('input-text');
+    const button = document.getElementById('render-btn');
+    const container = document.getElementById('graph-container');
+
+    button.addEventListener('click', async () => {
+        const code = input.value.trim();
+        
+        // Xóa nội dung cũ và vẽ lại
+        container.removeAttribute('data-processed');
+        container.innerHTML = code;
+        
+        try {
+            await mermaid.run({ nodes: [container] });
+        } catch (err) {
+            console.error("Lỗi cú pháp:", err);
+            alert("Cú pháp không hợp lệ. Vui lòng kiểm tra lại!");
+        }
+    });
+</script>
+
+</body>
+</html>
