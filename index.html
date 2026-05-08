@@ -58,47 +58,95 @@
             </div>
 
             <!-- KHỐI 11 -->
-            <div class="group">
-                <button onclick="toggleMenu('k11-main')" class="w-full flex items-center justify-between p-3 bg-slate-800/40 rounded-xl transition border border-slate-700">
-                    <div class="flex items-center gap-3 text-emerald-400 font-bold text-sm"><i class="fas fa-gears"></i> CÔNG NGHỆ 11</div>
-                    <i class="fas fa-chevron-right text-[10px] rotate-icon" id="icon-k11-main"></i>
-                </button>
-                
-                <div id="k11-main" class="submenu rounded-xl ml-2 mt-1 space-y-2">
-                    <!-- PHẦN 1: CƠ KHÍ CHẾ TẠO -->
-                    <div class="px-4 pt-2 text-[10px] font-black text-slate-600 uppercase tracking-widest">Phần 1: Cơ khí chế tạo</div>
-                    
-                    <!-- Chương I -->
-                    <div class="ml-2">
-                        <button onclick="toggleMenu('k11-c1')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương I: Giới thiệu <i class="fas fa-angle-down"></i></button>
-                        <div id="k11-c1" class="submenu border-l border-slate-800 ml-2">
-                            <div onclick="loadLesson('k11b1')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 1: Khái quát về CKCT</div>
-                            <div onclick="loadLesson('k11b2')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 2: Ngành nghề CKCT</div>
-                        </div>
-                    </div>
-
-                    <!-- Chương II -->
-                    <div class="ml-2">
-                        <button onclick="toggleMenu('k11-c2')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương II: Vật liệu <i class="fas fa-angle-down"></i></button>
-                        <div id="k11-c2" class="submenu border-l border-slate-800 ml-2">
-                            <div onclick="loadLesson('k11b3')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 3: Tổng quan vật liệu</div>
-                            <div onclick="loadLesson('k11b4')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 4: Kim loại & Hợp kim</div>
-                            <div onclick="loadLesson('k11b5')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 5: Phi kim loại</div>
-                            <div onclick="loadLesson('k11b6')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 6: Vật liệu mới</div>
-                        </div>
-                    </div>
-
-                    <!-- CÁC CHƯƠNG KHÁC ANH TIẾP TỤC COPY CẤU TRÚC NÀY -->
-                    <div class="px-4 pt-4 text-[10px] font-black text-slate-600 uppercase tracking-widest border-t border-slate-800 mx-2 mt-2">Phần 2: Cơ khí động lực</div>
-                    
-                    <div class="ml-2">
-                        <button onclick="toggleMenu('k11-c6')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương VI: Động cơ <i class="fas fa-angle-down"></i></button>
-                        <div id="k11-c6" class="submenu border-l border-slate-800 ml-2">
-                            <div onclick="loadLesson('k11b18')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2 font-bold text-emerald-500 underline">Bài 18: Nguyên lý ĐCĐT</div>
-                        </div>
-                    </div>
-                </div>
+            <!-- KHỐI 11 ĐẦY ĐỦ 7 CHƯƠNG -->
+<div class="group">
+    <button onclick="toggleMenu('k11-main')" class="w-full flex items-center justify-between p-3 bg-slate-800/40 rounded-xl transition border border-slate-700">
+        <div class="flex items-center gap-3 text-emerald-400 font-bold text-sm"><i class="fas fa-gears"></i> CÔNG NGHỆ 11</div>
+        <i class="fas fa-chevron-right text-[10px] rotate-icon" id="icon-k11-main"></i>
+    </button>
+    
+    <div id="k11-main" class="submenu rounded-xl ml-2 mt-1 space-y-2">
+        <!-- PHẦN 1: CƠ KHÍ CHẾ TẠO -->
+        <div class="px-4 pt-2 text-[10px] font-black text-slate-600 uppercase tracking-widest">Phần 1: Cơ khí chế tạo</div>
+        
+        <!-- Chương I -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c1')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương I: Giới thiệu <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c1" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b1')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 1: Khái quát về CKCT</div>
+                <div onclick="loadLesson('k11b2')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 2: Ngành nghề CKCT</div>
             </div>
+        </div>
+
+        <!-- Chương II -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c2')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương II: Vật liệu <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c2" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b3')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 3: Tổng quan vật liệu</div>
+                <div onclick="loadLesson('k11b4')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 4: Kim loại & Hợp kim</div>
+                <div onclick="loadLesson('k11b5')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 5: Phi kim loại</div>
+                <div onclick="loadLesson('k11b6')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 6: Vật liệu mới</div>
+            </div>
+        </div>
+
+        <!-- Chương III -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c3')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương III: Gia công <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c3" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b7')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 7: Khái quát gia công</div>
+                <div onclick="loadLesson('k11b8')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 8: Phương pháp gia công</div>
+                <div onclick="loadLesson('k11b9')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 9: Quy trình công nghệ</div>
+                <div onclick="loadLesson('k11b10')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 10: Dự án chế tạo</div>
+            </div>
+        </div>
+
+        <!-- Chương IV -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c4')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương IV: Sản xuất <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c4" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b11')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 11: Quá trình sản xuất</div>
+                <div onclick="loadLesson('k11b12')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 12: Robot & Tự động hóa</div>
+                <div onclick="loadLesson('k11b13')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 13: Cách mạng 4.0</div>
+                <div onclick="loadLesson('k11b14')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 14: An toàn & Môi trường</div>
+            </div>
+        </div>
+
+        <!-- PHẦN 2: CƠ KHÍ ĐỘNG LỰC -->
+        <div class="px-4 pt-4 text-[10px] font-black text-slate-600 uppercase tracking-widest border-t border-slate-800 mx-2 mt-2">Phần 2: Cơ khí động lực</div>
+        
+        <!-- Chương V -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c5')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương V: Giới thiệu Động lực <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c5" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b15')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 15: Khái quát CK động lực</div>
+                <div onclick="loadLesson('k11b16')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 16: Ngành nghề CK động lực</div>
+            </div>
+        </div>
+
+        <!-- Chương VI -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c6')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương VI: Động cơ <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c6" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b17')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 17: Đại cương ĐCĐT</div>
+                <div onclick="loadLesson('k11b18')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 18: Nguyên lý ĐCĐT</div>
+                <div onclick="loadLesson('k11b19')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 19: Các cơ cấu ĐCĐT</div>
+                <div onclick="loadLesson('k11b20')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 20: Các hệ thống ĐCĐT</div>
+            </div>
+        </div>
+
+        <!-- Chương VII -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k11-c7')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4">Chương VII: Ô tô <i class="fas fa-angle-down"></i></button>
+            <div id="k11-c7" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k11b21')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 21: Khái quát về ô tô</div>
+                <div onclick="loadLesson('k11b22')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 22: Hệ thống truyền lực</div>
+                <div onclick="loadLesson('k11b23')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 23: Hệ thống treo</div>
+                <div onclick="loadLesson('k11b24')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 24: Hệ thống lái</div>
+                <div onclick="loadLesson('k11b25')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 25: Hệ thống phanh</div>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- KHỐI 12 -->
             <div class="group">
