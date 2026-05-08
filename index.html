@@ -3,112 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Slide Tech Multi-Level - GV Gia Thoại</title>
+    <title>E-Slide Tech - Công nghệ 11 Toàn tập</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
-        
-        .slide-content { display: none; opacity: 0; transform: scale(0.98); transition: all 0.5s ease; }
-        .slide-active { display: flex !important; opacity: 1; transform: scale(1); }
-
-        /* Hiệu ứng đóng mở menu */
+        .slide-content { display: none; opacity: 0; transition: all 0.5s ease; }
+        .slide-active { display: flex !important; opacity: 1; }
         .submenu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
-        .submenu.open { max-height: 1000px; transition: max-height 0.5s ease-in; }
-        
+        .submenu.open { max-height: 2000px; transition: max-height 0.5s ease-in; }
         .rotate-icon { transition: transform 0.3s; }
-        .open > .rotate-icon { transform: rotate(90deg); }
-
+        .open-icon { transform: rotate(90deg); }
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        
-        #presentation-zone:fullscreen { background: white; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body class="flex h-screen overflow-hidden text-slate-200">
 
-    <!-- SIDEBAR ĐA CẤP -->
     <aside class="w-80 bg-slate-900 flex flex-col shadow-2xl border-r border-slate-800">
         <div class="p-6 bg-slate-900 border-b border-slate-800">
-            <h1 class="text-xl font-bold text-blue-400 tracking-tight flex items-center gap-2">
-                <i class="fas fa-layer-group"></i> E-SLIDE SYSTEM
+            <h1 class="text-xl font-bold text-blue-400 flex items-center gap-2">
+                <i class="fas fa-gear animate-spin-slow"></i> E-TECH 11
             </h1>
-            <p class="text-[10px] text-slate-500 uppercase mt-1 font-bold">Hệ thống bài giảng đa khối</p>
+            <p class="text-[10px] text-slate-500 uppercase mt-1 font-bold">Hệ thống bài giảng Công nghệ 11</p>
         </div>
 
         <nav class="flex-1 overflow-y-auto custom-scroll p-2 space-y-2">
             
-            <!-- KHỐI 10 -->
-            <div class="menu-group">
-                <button onclick="toggleMenu('k10-sub')" class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-lg transition">
-                    <div class="flex items-center gap-3 text-blue-400 font-bold"><i class="fas fa-graduation-cap"></i> CÔNG NGHỆ 10</div>
-                    <i class="fas fa-chevron-right text-xs rotate-icon" id="icon-k10-sub"></i>
-                </button>
-                <div id="k10-sub" class="submenu pl-4 space-y-1 bg-slate-800/30 rounded-b-lg">
-                    <!-- Chương I -->
-                    <button onclick="toggleMenu('k10-c1')" class="w-full text-left p-2 text-xs font-bold text-slate-500 uppercase mt-2 flex justify-between pr-4">
-                        Chương I: Giới thiệu <i class="fas fa-caret-down"></i>
-                    </button>
-                    <div id="k10-c1" class="submenu pl-2 border-l border-slate-700 ml-2">
-                        <div onclick="loadLesson('k10b1')" class="p-2 text-sm hover:text-blue-400 cursor-pointer transition">Bài 1: KH, KT & Công nghệ</div>
-                        <div onclick="loadLesson('k10b2')" class="p-2 text-sm hover:text-blue-400 cursor-pointer transition">Bài 2: Hệ thống kỹ thuật</div>
-                    </div>
-                </div>
-            </div>
-
             <!-- KHỐI 11 -->
             <div class="menu-group">
-                <button onclick="toggleMenu('k11-sub')" class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-lg transition">
-                    <div class="flex items-center gap-3 text-green-400 font-bold"><i class="fas fa-gears"></i> CÔNG NGHỆ 11</div>
-                    <i class="fas fa-chevron-right text-xs rotate-icon" id="icon-k11-sub"></i>
+                <button onclick="toggleMenu('k11-main')" class="w-full flex items-center justify-between p-3 bg-slate-800/50 rounded-lg transition border border-slate-700">
+                    <div class="flex items-center gap-3 text-green-400 font-bold"><i class="fas fa-microchip"></i> KHỐI 11</div>
+                    <i class="fas fa-chevron-right text-xs rotate-icon" id="icon-k11-main"></i>
                 </button>
-                <div id="k11-sub" class="submenu pl-4 space-y-1 bg-slate-800/30 rounded-b-lg">
+                
+                <div id="k11-main" class="submenu pl-2 mt-2 space-y-2">
                     
+                    <!-- PHẦN 1 -->
+                    <div class="text-[10px] font-black text-slate-600 uppercase ml-2 tracking-tighter">Phần 1: Cơ khí chế tạo</div>
+
+                    <!-- Chương I -->
+                    <div>
+                        <button onclick="toggleMenu('k11-c1')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương I: Giới thiệu chung <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c1" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b1')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 1: Khái quát về CKCT</div>
+                            <div onclick="loadLesson('b2')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 2: Ngành nghề CKCT</div>
+                        </div>
+                    </div>
+
+                    <!-- Chương II -->
+                    <div>
+                        <button onclick="toggleMenu('k11-c2')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương II: Vật liệu cơ khí <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c2" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b3')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 3: Tổng quan vật liệu</div>
+                            <div onclick="loadLesson('b4')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 4: Kim loại & Hợp kim</div>
+                            <div onclick="loadLesson('b5')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 5: Vật liệu phi kim</div>
+                            <div onclick="loadLesson('b6')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 6: Vật liệu mới</div>
+                        </div>
+                    </div>
+
+                    <!-- Chương III -->
+                    <div>
+                        <button onclick="toggleMenu('k11-c3')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương III: Gia công cơ khí <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c3" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b7')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 7: Khái quát gia công</div>
+                            <div onclick="loadLesson('b8')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 8: Phương pháp gia công</div>
+                            <div onclick="loadLesson('b9')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 9: Quy trình công nghệ</div>
+                            <div onclick="loadLesson('b10')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 10: Dự án chế tạo</div>
+                        </div>
+                    </div>
+
+                    <!-- Chương IV -->
+                    <div>
+                        <button onclick="toggleMenu('k11-c4')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương IV: Sản xuất cơ khí <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c4" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b11')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 11: Quá trình sản xuất</div>
+                            <div onclick="loadLesson('b12')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 12: Robot & Tự động hóa</div>
+                            <div onclick="loadLesson('b13')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 13: Cách mạng 4.0</div>
+                            <div onclick="loadLesson('b14')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 14: An toàn & Môi trường</div>
+                        </div>
+                    </div>
+
+                    <!-- PHẦN 2 -->
+                    <div class="text-[10px] font-black text-slate-600 uppercase ml-2 tracking-tighter pt-4">Phần 2: Cơ khí động lực</div>
+
+                    <!-- Chương V -->
+                    <div>
+                        <button onclick="toggleMenu('k11-c5')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương V: Giới thiệu CK Động lực <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c5" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b15')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 15: Khái quát CK động lực</div>
+                            <div onclick="loadLesson('b16')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 16: Ngành nghề CK động lực</div>
+                        </div>
+                    </div>
+
                     <!-- Chương VI -->
-                    <button onclick="toggleMenu('k11-c6')" class="w-full text-left p-2 text-xs font-bold text-slate-500 uppercase mt-2 flex justify-between pr-4">
-                        Chương VI: Động cơ <i class="fas fa-caret-down"></i>
-                    </button>
-                    <div id="k11-c6" class="submenu pl-2 border-l border-slate-700 ml-2">
-                        <div onclick="loadLesson('k11b17')" class="p-2 text-sm hover:text-green-400 cursor-pointer transition">Bài 17: Đại cương ĐCĐT</div>
-                        <div onclick="loadLesson('k11b18')" class="p-2 text-sm hover:text-green-400 cursor-pointer transition">Bài 18: Nguyên lý ĐCĐT</div>
+                    <div>
+                        <button onclick="toggleMenu('k11-c6')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương VI: Động cơ đốt trong <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c6" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b17')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 17: Đại cương ĐCĐT</div>
+                            <div onclick="loadLesson('b18')" class="p-2 text-xs hover:text-green-400 cursor-pointer font-bold text-green-500">Bài 18: Nguyên lý ĐCĐT</div>
+                            <div onclick="loadLesson('b19')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 19: Các cơ cấu ĐCĐT</div>
+                            <div onclick="loadLesson('b20')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 20: Các hệ thống ĐCĐT</div>
+                        </div>
                     </div>
 
                     <!-- Chương VII -->
-                    <button onclick="toggleMenu('k11-c7')" class="w-full text-left p-2 text-xs font-bold text-slate-500 uppercase mt-2 flex justify-between pr-4">
-                        Chương VII: Ô tô <i class="fas fa-caret-down"></i>
-                    </button>
-                    <div id="k11-c7" class="submenu pl-2 border-l border-slate-700 ml-2">
-                        <div onclick="loadLesson('k11b21')" class="p-2 text-sm hover:text-green-400 cursor-pointer transition">Bài 21: Khái quát ô tô</div>
-                        <div onclick="loadLesson('k11b22')" class="p-2 text-sm hover:text-green-400 cursor-pointer transition text-slate-500">Bài 22: Hệ thống truyền lực</div>
+                    <div>
+                        <button onclick="toggleMenu('k11-c7')" class="w-full text-left p-2 text-xs font-bold text-slate-400 hover:text-white flex justify-between items-center">
+                            Chương VII: Ô tô <i class="fas fa-angle-down"></i>
+                        </button>
+                        <div id="k11-c7" class="submenu pl-4 border-l border-slate-800 ml-2">
+                            <div onclick="loadLesson('b21')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 21: Khái quát về ô tô</div>
+                            <div onclick="loadLesson('b22')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 22: Hệ thống truyền lực</div>
+                            <div onclick="loadLesson('b23')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 23: Hệ thống treo</div>
+                            <div onclick="loadLesson('b24')" class="p-2 text-xs hover:text-green-400 cursor-pointer">Bài 24: Hệ thống lái</div>
+                            <div onclick="loadLesson('b25')" class="p-2 text-xs hover:text-green-400 cursor-pointer text-orange-400">Bài 25: Hệ thống phanh</div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-            <!-- KHỐI 12 -->
-            <div class="menu-group">
-                <button onclick="toggleMenu('k12-sub')" class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-lg transition">
-                    <div class="flex items-center gap-3 text-purple-400 font-bold"><i class="fas fa-bolt"></i> CÔNG NGHỆ 12</div>
-                    <i class="fas fa-chevron-right text-xs rotate-icon" id="icon-k12-sub"></i>
-                </button>
-                <div id="k12-sub" class="submenu pl-4 bg-slate-800/30 rounded-b-lg">
-                    <div onclick="loadLesson('k12b1')" class="p-2 text-sm hover:text-purple-400 cursor-pointer transition">Bài 1: Linh kiện thụ động</div>
-                </div>
-            </div>
+            <!-- Các khối khác tương tự -->
+            <button class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-lg transition opacity-50 cursor-not-allowed">
+                <div class="flex items-center gap-3 text-slate-400 font-bold"><i class="fas fa-lock"></i> KHỐI 10</div>
+            </button>
+            <button class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-lg transition opacity-50 cursor-not-allowed">
+                <div class="flex items-center gap-3 text-slate-400 font-bold"><i class="fas fa-lock"></i> KHỐI 12</div>
+            </button>
 
         </nav>
         
-        <div class="p-4 bg-slate-950 text-[10px] text-slate-600 text-center border-t border-slate-800">
-            GV: Gia Thoại - THPT Trần Văn Thành
+        <div class="p-4 bg-slate-950 text-[10px] text-slate-600 text-center border-t border-slate-800 italic">
+            Phần mềm hỗ trợ GV: Gia Thoại
         </div>
     </aside>
 
-    <!-- MÀN HÌNH TRÌNH CHIẾU -->
     <main class="flex-1 flex flex-col p-6 bg-slate-100">
         <div class="flex justify-between items-center mb-6 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
             <div>
-                <h2 id="current-lesson-title" class="text-xl font-bold text-slate-800 uppercase tracking-tight text-blue-600">Hệ thống sẵn sàng</h2>
-                <p id="slide-info" class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1">Vui lòng chọn bài giảng</p>
+                <h2 id="current-lesson-title" class="text-xl font-bold text-slate-800 uppercase text-green-600 tracking-tight">Sẵn sàng giảng dạy</h2>
+                <p id="slide-info" class="text-[10px] text-slate-400 font-bold uppercase mt-1">Chọn bài học để bắt đầu</p>
             </div>
             
             <div class="flex items-center gap-3">
@@ -125,48 +173,39 @@
 
         <div id="presentation-zone" class="flex-1 bg-white rounded-2xl shadow-2xl relative overflow-hidden border border-slate-200">
             <div id="welcome-screen" class="absolute inset-0 flex flex-col items-center justify-center text-slate-200">
-                <i class="fas fa-laptop-code text-[120px] mb-6 opacity-10"></i>
-                <h3 class="text-slate-400 font-bold uppercase tracking-tighter text-2xl">E-TECH HUB 2026</h3>
+                <i class="fas fa-book-open text-[100px] mb-6 opacity-10"></i>
+                <h3 class="text-slate-400 font-bold uppercase text-2xl tracking-tighter">CÔNG NGHỆ 11 - 2026</h3>
             </div>
             <div id="slides-container" class="h-full w-full relative"></div>
         </div>
     </main>
 
     <script>
-        // CƠ SỞ DỮ LIỆU
+        // DATA PLACEHOLDER
         const lessonData = {
-            'k10b1': { title: "K10 - Bài 1: Khoa học & Công nghệ", slides: [{ h: "Mục tiêu bài học", p: "Hiểu mối quan hệ giữa KH, KT và CN." }] },
-            'k11b18': { 
-                title: "K11 - Bài 18: Nguyên lý làm việc ĐCĐT", 
-                slides: [
-                    { h: "Chu trình làm việc", p: "Bao gồm 4 quá trình: Nạp - Nén - Cháy, dãn nở (Nổ) - Xả." },
-                    { h: "Hành trình Pit-tông", p: "Là khoảng cách giữa điểm chết trên (DCT) và điểm chết dưới (DCD)." }
-                ] 
-            },
-            'k12b1': { title: "K12 - Bài 1: Linh kiện thụ động", slides: [{ h: "Điện trở", p: "Cản trở dòng điện và phân chia điện áp." }] }
+            'b1': { title: "Bài 1: Khái quát về Cơ khí chế tạo", slides: [{ h: "Khái niệm", p: "Ngành thiết kế và sản xuất các loại máy móc." }] },
+            'b18': { title: "Bài 18: Nguyên lý ĐCĐT", slides: [
+                { h: "Chu trình làm việc", p: "Gồm: Nạp - Nén - Nổ - Xả" },
+                { h: "Động cơ 4 kỳ", p: "Trục khuỷu quay 2 vòng, Pit-tông thực hiện 4 hành trình." }
+            ]},
+            'b25': { title: "Bài 25: Hệ thống phanh", slides: [{ h: "Nhiệm vụ", p: "Dùng để giảm vận tốc hoặc dừng hẳn xe ô tô." }] }
         };
 
         let currentSlides = [];
         let currentIndex = 0;
 
-        // HÀM ĐIỀU KHIỂN MENU SỔ XUỐNG
         function toggleMenu(id) {
             const menu = document.getElementById(id);
             const icon = document.getElementById('icon-' + id);
-            
-            // Đóng các menu cùng cấp nếu muốn (tùy chọn)
             menu.classList.toggle('open');
-            if (icon) icon.classList.toggle('rotate-90');
+            if (icon) icon.classList.toggle('open-icon');
         }
 
         function loadLesson(key) {
             const data = lessonData[key];
-            if (!data) return alert("Nội dung đang được biên soạn!");
-
+            if (!data) return alert("Nội dung bài học này đang được chuẩn bị!");
             document.getElementById('welcome-screen').style.display = 'none';
             document.getElementById('current-lesson-title').innerText = data.title;
-            document.getElementById('slide-info').innerText = "Trình chiếu nội dung bài giảng";
-            
             currentSlides = data.slides;
             currentIndex = 0;
             renderSlides();
@@ -178,7 +217,7 @@
             currentSlides.forEach((slide, index) => {
                 const div = document.createElement('div');
                 div.className = `slide-content absolute inset-0 flex flex-col items-center justify-center p-12 text-center ${index === currentIndex ? 'slide-active' : ''}`;
-                div.innerHTML = `<h2 class="text-5xl font-black text-blue-700 mb-10">${slide.h}</h2><p class="text-3xl text-slate-800 leading-relaxed max-w-5xl">${slide.p}</p>`;
+                div.innerHTML = `<h2 class="text-5xl font-black text-green-700 mb-10 tracking-tight">${slide.h}</h2><p class="text-3xl text-slate-800 leading-relaxed max-w-5xl">${slide.p}</p>`;
                 container.appendChild(div);
             });
             document.getElementById('slide-number').innerText = `${currentIndex + 1} / ${currentSlides.length}`;
@@ -188,7 +227,7 @@
         function prevSlide() { if (currentIndex > 0) { currentIndex--; renderSlides(); } }
         function toggleFullScreen() {
             const elem = document.getElementById('presentation-zone');
-            if (!document.fullscreenElement) elem.requestFullscreen().catch(err => {});
+            if (!document.fullscreenElement) elem.requestFullscreen();
             else document.exitFullscreen();
         }
         document.addEventListener('keydown', (e) => {
