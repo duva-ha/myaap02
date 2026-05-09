@@ -46,18 +46,58 @@
 
         <nav class="flex-1 overflow-y-auto custom-scroll p-3 space-y-4">
             
-            <!-- KHỐI 10 -->
-            <div class="group">
-                <button onclick="toggleMenu('k10-main')" class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-xl transition border border-transparent hover:border-slate-700">
-                    <div class="flex items-center gap-3 text-blue-400 font-bold text-sm"><i class="fas fa-compass"></i> CÔNG NGHỆ 10</div>
-                    <i class="fas fa-chevron-right text-[10px] rotate-icon" id="icon-k10-main"></i>
-                </button>
-                <div id="k10-main" class="submenu rounded-xl ml-2 mt-1">
-                    <div onclick="loadLesson('k10b1')" class="lesson-item p-3 text-xs cursor-pointer rounded-lg ml-4">Bài 1: KH, KT & Công nghệ</div>
-                </div>
+          <!-- KHỐI 10: ĐẠI CƯƠNG & THIẾT KẾ KỸ THUẬT -->
+<div class="group">
+    <button onclick="toggleMenu('k10-main')" class="w-full flex items-center justify-between p-3 hover:bg-slate-800 rounded-xl transition border border-transparent hover:border-slate-700">
+        <div class="flex items-center gap-3 text-blue-400 font-bold text-sm"><i class="fas fa-compass"></i> CÔNG NGHỆ 10</div>
+        <i class="fas fa-chevron-right text-[10px] rotate-icon" id="icon-k10-main"></i>
+    </button>
+    <div id="k10-main" class="submenu rounded-xl ml-2 mt-1 space-y-2">
+        
+        <!-- Chương I -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k10-c1')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4 font-semibold italic">Chương I: Đại cương về CN <i class="fas fa-angle-down"></i></button>
+            <div id="k10-c1" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k10b1')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 1: CN và đời sống</div>
+                <div onclick="loadLesson('k10b2')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 2: Hệ thống kĩ thuật</div>
+                <div onclick="loadLesson('k10b3')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 3: Công nghệ phổ biến</div>
+                <div onclick="loadLesson('k10b4')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 4: Một số công nghệ mới</div>
+                <div onclick="loadLesson('k10b5')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 5: Đánh giá công nghệ</div>
+                <div onclick="loadLesson('k10b6')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 6: Cách mạng công nghệ</div>
+                <div onclick="loadLesson('k10b7')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 7: Ngành nghề KT, CN</div>
             </div>
+        </div>
 
-            <!-- KHỐI 11 -->
+        <!-- Chương II -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k10-c2')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4 font-semibold italic">Chương II: Vẽ kỹ thuật <i class="fas fa-angle-down"></i></button>
+            <div id="k10-c2" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k10b8')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 8: Tiêu chuẩn bản vẽ KT</div>
+                <div onclick="loadLesson('k10b9')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 9: Hình chiếu vuông góc</div>
+                <div onclick="loadLesson('k10b10')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 10: Hình cắt & Mặt cắt</div>
+                <div onclick="loadLesson('k10b11')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 11: Hình chiếu trục đo</div>
+                <div onclick="loadLesson('k10b12')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 12: Hình chiếu phối cảnh</div>
+                <div onclick="loadLesson('k10b13')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 13: Biểu diễn quy ước ren</div>
+                <div onclick="loadLesson('k10b14')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 14: Bản vẽ cơ khí</div>
+                <div onclick="loadLesson('k10b15')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 15: Bản vẽ xây dựng</div>
+                <div onclick="loadLesson('k10b16')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 16: Vẽ KT với máy tính</div>
+            </div>
+        </div>
+
+        <!-- Chương III -->
+        <div class="ml-2">
+            <button onclick="toggleMenu('k10-c3')" class="w-full text-left p-2 text-[11px] font-bold text-slate-400 flex justify-between pr-4 font-semibold italic">Chương III: Thiết kế kỹ thuật <i class="fas fa-angle-down"></i></button>
+            <div id="k10-c3" class="submenu border-l border-slate-800 ml-2">
+                <div onclick="loadLesson('k10b17')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 17: Khái quát thiết kế KT</div>
+                <div onclick="loadLesson('k10b18')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 18: Quy trình thiết kế KT</div>
+                <div onclick="loadLesson('k10b19')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 19: Các yếu tố ảnh hưởng</div>
+                <div onclick="loadLesson('k10b20')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 20: Nguyên tắc thiết kế KT</div>
+                <div onclick="loadLesson('k10b21')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2">Bài 21: Phương tiện hỗ trợ</div>
+                <div onclick="loadLesson('k10b22')" class="lesson-item p-2 text-[11px] cursor-pointer ml-2 font-bold text-blue-400">Bài 22: Dự án thiết kế</div>
+            </div>
+        </div>
+    </div>
+</div>
             <!-- KHỐI 11 ĐẦY ĐỦ 7 CHƯƠNG -->
 <div class="group">
     <button onclick="toggleMenu('k11-main')" class="w-full flex items-center justify-between p-3 bg-slate-800/40 rounded-xl transition border border-slate-700">
